@@ -14,7 +14,7 @@
   ],
   "backoffFactor": 1.15,
   "backoffSeconds": 1,
-  "cmd": "mv /mnt/mesos/sandbox/sample.war /usr/local/tomcat/webapps/sample.war && /usr/local/tomcat/bin/catalina.sh run",
+  "cmd": "mv /mnt/mesos/sandbox/helloworld.war /usr/local/tomcat/webapps/helloworld.war",
   "container": {
     "portMappings": [
       {
