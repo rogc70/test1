@@ -1,0 +1,84 @@
+{
+  "env": {
+    "JAVA_OPTS": "-Xms256m -Xmx256m",
+    "DATABASE_PASSWORD": "tomcat",
+    "DATABASE_USER": "root",
+    "DATABASE_NAME": "tomcat-mysql"
+  },
+  "labels": {
+    "HAPROXY_GROUP": "external"
+  },
+  "id": "/migrationtool",
+  "acceptedResourceRoles": [
+    "slave_public"
+  ],
+  "backoffFactor": 1.15,
+  "backoffSeconds": 1,
+  "cmd": "mv /mnt/mesos/sandbox/helloworld.war /usr/local/tomcat/webapps/helloworld.war && /usr/local/tomcat/bin/catalina.sh run",
+  "container": {
+    "portMappings": [
+      {
+        "containerPort": 8080,
+        "hostPort": 0,
+        "labels": {
+          "VIP_0": "/migrationtool:8080"
+        },
+        "protocol": "tcp",
+        "servicePort": 0,
+        "name": "web"
+      }
+    ],
+    "type": "DOCKER",
+    "volumes": [],
+    "docker": {
+      "image": "tomcat:latest",
+      "forcePullImage": false,
+      "privileged": false,
+      "parameters": []
+    }
+  },
+  "cpus": 1,
+  "disk": 0,
+  "fetch": [
+    {
+      "uri": "https://github.com/rogc70/test1/blob/master/helloworld.war",
+      "extract": false,
+      "executable": false,
+      "cache": false
+    }
+  ],
+  "healthChecks": [
+    {
+      "gracePeriodSeconds": 120,
+      "ignoreHttp1xx": false,
+      "intervalSeconds": 30,
+      "maxConsecutiveFailures": 3,
+      "portIndex": 0,
+      "timeoutSeconds": 5,
+      "delaySeconds": 15,
+      "protocol": "HTTP",
+      "path": "/",
+      "ipProtocol": "IPv4"
+    }
+  ],
+  "instances": 1,
+  "maxLaunchDelaySeconds": 3600,
+  "mem": 512,
+  "gpus": 0,
+  "networks": [
+    {
+      "mode": "container/bridge"
+    }
+  ],
+  "requirePorts": false,
+  "upgradeStrategy": {
+    "maximumOverCapacity": 1,
+    "minimumHealthCapacity": 1
+  },
+  "killSelection": "YOUNGEST_FIRST",
+  "unreachableStrategy": {
+    "inactiveAfterSeconds": 0,
+    "expungeAfterSeconds": 0
+  },
+  "constraints": []
+}
