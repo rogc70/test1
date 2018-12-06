@@ -8,7 +8,7 @@
   "labels": {
     "HAPROXY_GROUP": "external"
   },
-  "id": "/migrationtool-2",
+  "id": "/migrationtool-3",
   "acceptedResourceRoles": [
     "slave_public"
   ],
