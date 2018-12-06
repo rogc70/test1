@@ -41,7 +41,7 @@
   "disk": 0,
   "fetch": [
     {
-      "uri": "https://github.com/rogc70/test1/blob/master/helloworld.war",
+      "uri": "https://github.com/rogc70/test1/blob/master/sample.war",
       "extract": false,
       "executable": false,
       "cache": false
